@@ -1,43 +1,16 @@
-export default function (a: string, b: string): boolean {
-  const alphabet = [
-    'a',
-    'b',
-    'c',
-    'd',
-    'e',
-    'f',
-    'g',
-    'h',
-    'i',
-    'j',
-    'k',
-    'l',
-    'm',
-    'n',
-    'o',
-    'p',
-    'q',
-    'r',
-    's',
-    't',
-    'u',
-    'v',
-    'w',
-    'x',
-    'y',
-    'z',
-  ]
+enum Insert {
+  left,
+  right,
+}
 
-  const separatorAInArray = a.split(' ')
-  const separatorBInArray = b.split(' ')
+export default function (rootValues: string, compare: string): string {
+  const result: number = rootValues.localeCompare(compare, undefined, {
+    sensitivity: 'base',
+  })
 
-  const joinAInString = separatorAInArray.join('')
-  const joinBInString = separatorBInArray.join('')
-
-  const arrayA = joinAInString.split('')
-  const arrayB = joinBInString.split('')
-
-  for (let i = 0; i < arrayA.length - 1; i++) {
-    if
+  if (result === -1 || result === 0) {
+    return Insert[result]
   }
+
+  return Insert[result]
 }
