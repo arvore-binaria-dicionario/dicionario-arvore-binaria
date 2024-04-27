@@ -1,6 +1,7 @@
-type Insert = 'left' | 'right'
-
-export default function (rootValues: string, compare: string): Insert {
+export default function (
+  rootValues: string,
+  compare: string,
+): 'left' | 'right' {
   const rootWithoutSpaces = removeAllSpaces(rootValues).toLowerCase()
   const compareWithoutSpaces = removeAllSpaces(compare).toLowerCase()
 
