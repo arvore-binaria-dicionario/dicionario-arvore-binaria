@@ -1,5 +1,8 @@
 import { Dictionary, BinaryTree } from './utils/interface-arvore'
 import compareStringByLetterValue from './utils/compare-string-by-letter-value'
+import csvToJson from './utils/csvToJson'
+
+import path from 'path'
 
 const dictionary: Dictionary = {
   root: {
@@ -51,4 +54,24 @@ dictionary2.setRight({
   significance: 'C',
 })
 
-console.log(compareStringByLetterValue('cada', 'cacaa'))
+const csvFilePath = path.resolve(__dirname, './csv/dicionario.csv')
+// Exemplo de uso (mantém a mesma estrutura)
+csvToJson(csvFilePath)
+  .then((jsonData) => {
+    let id = 1
+    for (const element of jsonData.Dictionary) {
+      dictionary2.setLeft({
+        id,
+        name: element.name,
+        significance: element.significance,
+      })
+      id++
+      console.log(element)
+    }
+  })
+  .then(() => {
+    console.log(compareStringByLetterValue('Zona (1)', 'Zona (10)'))
+  })
+  .catch((err) => {
+    console.error('Erro ao lidar com o arquivo:', err)
+  })
