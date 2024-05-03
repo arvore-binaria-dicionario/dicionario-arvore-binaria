@@ -1,6 +1,5 @@
-import fs from 'fs/promises' // Importando fs/promises do módulo fs
+import fs from 'fs/promises'
 
-// Definindo a interface para cada entrada do dicionário
 interface DictionaryEntry {
   name: string
   significance: string

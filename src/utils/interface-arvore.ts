@@ -11,7 +11,7 @@ export interface Dictionary {
 }
 
 export class BinaryTree {
-  dictionary: Dictionary
+  private dictionary: Dictionary
 
   constructor(root: DictionaryItem) {
     this.dictionary = {
@@ -35,5 +35,9 @@ export class BinaryTree {
       left: null,
       right: null,
     }
+  }
+
+  getDictionary() {
+    return this.dictionary
   }
 }
