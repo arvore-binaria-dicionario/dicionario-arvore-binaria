@@ -1,4 +1,5 @@
-import fs from 'fs/promises'
+import fs from 'fs'
+import readline from 'readline'
 
 interface DictionaryEntry {
   name: string
@@ -12,13 +13,21 @@ export default async function csvToJson(csvFilePath: string): Promise<{
   }[]
 }> {
   try {
-    const csvData = await fs.readFile(csvFilePath, 'utf-8')
-    const lines = csvData.split('\n')
-    const headers = lines[0].split(';')
-    const dictionary: DictionaryEntry[] = []
+    const fileStream = fs.createReadStream(csvFilePath, 'utf-8')
+    const rl = readline.createInterface({
+      input: fileStream,
+      crlfDelay: Infinity,
+    })
 
-    for (let i = 1; i < lines.length; i++) {
-      const data = lines[i].split(';')
+    const dictionary: DictionaryEntry[] = []
+    let headers: string[] = []
+
+    for await (const line of rl) {
+      const data = line.split(';')
+      if (!headers.length) {
+        headers = data
+        continue
+      }
       if (data.length === headers.length) {
         const entry: DictionaryEntry = {
           name: data[0],

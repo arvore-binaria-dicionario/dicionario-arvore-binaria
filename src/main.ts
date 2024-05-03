@@ -68,7 +68,6 @@ csvToJson(csvFilePath)
       id++
       console.log(element)
     }
-    console.timeEnd('Execution Time')
   })
   .then(() => {
     console.log(dictionary2.getDictionary())
@@ -76,4 +75,7 @@ csvToJson(csvFilePath)
   })
   .catch((err) => {
     console.error('Erro ao lidar com o arquivo:', err)
+  })
+  .finally(() => {
+    console.timeEnd('Execution Time')
   })
