@@ -11,4 +11,5 @@
 - [ ] Em Ordem na Árvore: Módulo responsável por exibir elementos da árvore em ordem.
 - [ ] Pré-Ordem na Árvore: Módulo responsável por exibir elementos da árvore em pré-ordem.
 - [ ] Pós-Ordem na Árvore: Módulo responsável por exibir elementos da árvore em pós-ordem.
-- [ ] Pesquisa das Palavras Correspondentes: Módulo responsável por pesquisar palavras correspondentes no dicionário.
+- [ ] Pesquisa das Palavras Correspondentes: Módulo responsável por pesquisar palavras correspondentes, e mostrar no máximo 5 correspondetes e que no mínimo seja 3 caracteres, no dicionário. Exemplo:
+![Imagem de Exemplo](./src/img/img.png)
