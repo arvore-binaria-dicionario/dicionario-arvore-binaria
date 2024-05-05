@@ -5,7 +5,7 @@
 - [x] Comparador de Strings: Módulo responsável por comparar strings.
 - [x] Interface da Árvore: Define a estrutura da árvore.
 - [x] Interface do Dicionário: Define a estrutura do dicionário.
-- [ ] Inserção na Árvore AVL: Módulo responsável por inserir elementos na árvore AVL.
+- [x] Inserção na Árvore AVL: Módulo responsável por inserir elementos na árvore AVL.
 - [ ] Pesquisa na Árvore: Módulo responsável por pesquisar elementos na árvore.
 - [ ] Deletar na Árvore AVL: Módulo responsável por deletar elementos na árvore AVL.
 - [ ] Em Ordem na Árvore: Módulo responsável por exibir elementos da árvore em ordem.
