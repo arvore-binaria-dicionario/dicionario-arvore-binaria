@@ -1,8 +1,6 @@
 import { Dictionary, DictionaryItem } from '../interface-arvore'
 import compareStrings from '../compare-string-by-letter-value'
 
-import { inOrder } from './inOrder'
-
 export function searchSpecificElementRecursively(
   node: Dictionary | null,
   key: string,
@@ -32,10 +30,24 @@ export function searchMatchingWords(
     throw new Error('Keyword must be at least 3 characters long')
   }
 
-  const allItems = inOrder(node)
-  const matchingItems = allItems.filter((item) =>
-    item.name.toLowerCase().startsWith(keyword.toLowerCase()),
-  )
+  const matchingItems: DictionaryItem[] = []
+  searchRecursively(node, keyword, matchingItems)
+  return matchingItems
+}
 
-  return matchingItems.slice(0, 5)
+function searchRecursively(
+  node: Dictionary | null,
+  keyword: string,
+  matchingItems: DictionaryItem[],
+): void {
+  if (!node || matchingItems.length >= 5) {
+    return
+  }
+
+  if (node.root.name.toLowerCase().startsWith(keyword.toLowerCase())) {
+    matchingItems.push(node.root)
+  }
+
+  searchRecursively(node.left, keyword, matchingItems)
+  searchRecursively(node.right, keyword, matchingItems)
 }

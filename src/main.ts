@@ -18,7 +18,6 @@ async function main() {
       })
       id++
     }
-    console.log(dictionary.searchMatchingWords('cai'))
   } catch (err) {
     console.error('Erro ao lidar com o arquivo:', err)
   } finally {
