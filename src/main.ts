@@ -1,6 +1,6 @@
 import { BinaryTree } from './utils/interface-arvore'
-import csvToJson from './utils/csvToJson'
 import path from 'path'
+import csvToBinaryTree from './utils/csvToBinaryTree'
 const csvFilePath = path.resolve(__dirname, './csv/dicionario.csv')
 
 const dictionary = new BinaryTree()
@@ -8,16 +8,7 @@ const dictionary = new BinaryTree()
 async function main() {
   console.time('Execution Time')
   try {
-    const jsonData = await csvToJson(csvFilePath)
-    let id = 1
-    for (const element of jsonData.Dictionary) {
-      dictionary.insert({
-        id,
-        name: element.name,
-        significance: element.significance,
-      })
-      id++
-    }
+    await csvToBinaryTree(csvFilePath, dictionary)
   } catch (err) {
     console.error('Erro ao lidar com o arquivo:', err)
   } finally {

@@ -11,14 +11,18 @@ export function insertRecursively(
   const comparisonResult = compareStringByLetterValue(node.root.name, key.name)
 
   if (comparisonResult === 'left') {
-    node.left = insertRecursively(node.left, key)
+    node.left = node.left
+      ? insertRecursively(node.left, key)
+      : { root: key, left: null, right: null }
   } else if (comparisonResult === 'right') {
-    node.right = insertRecursively(node.right, key)
+    node.right = node.right
+      ? insertRecursively(node.right, key)
+      : { root: key, left: null, right: null }
   } else {
     return node
   }
 
-  node = balanceNode(node, key)
+  node = balanceNode(node, comparisonResult)
 
   return node
 }

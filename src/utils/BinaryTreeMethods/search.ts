@@ -46,6 +46,9 @@ function searchRecursively(
 
   if (node.root.name.toLowerCase().startsWith(keyword.toLowerCase())) {
     matchingItems.push(node.root)
+    if (matchingItems.length >= 5) {
+      return
+    }
   }
 
   searchRecursively(node.left, keyword, matchingItems)
