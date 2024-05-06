@@ -1,5 +1,4 @@
 import { BinaryTree } from './utils/interface-arvore'
-import compareStringByLetterValue from './utils/compare-string-by-letter-value'
 import csvToJson from './utils/csvToJson'
 import path from 'path'
 const csvFilePath = path.resolve(__dirname, './csv/dicionario.csv')
@@ -19,9 +18,7 @@ async function main() {
       })
       id++
     }
-    console.log(dictionary.getDictionary())
-    console.log('\n')
-    console.log(compareStringByLetterValue('Zona (1)', 'Zona (10)'))
+    console.log(dictionary.searchMatchingWords('cai'))
   } catch (err) {
     console.error('Erro ao lidar com o arquivo:', err)
   } finally {
