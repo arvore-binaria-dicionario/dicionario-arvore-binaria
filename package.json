@@ -4,21 +4,46 @@
   "engines": {
     "node": "20.12.2"
   },
+  "type": "commonjs",
   "description": "",
-  "main": "index.js",
+  "main": "src/main.js",
+  "build": {
+    "appId": "com.ifto.dictionary",
+    "win": {
+      "target": [
+        "nsis"
+      ]
+    },
+    "linux": {
+      "target": [
+        "deb"
+      ]
+    }
+  },
   "scripts": {
+    "start": "electron ./dist/main.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "tsx watch src/main.ts --no-cache"
+    "dev": "tsx watch src/main.ts --no-cache",
+    "build": "tsup src/main.ts --assets && npm run obfuscate",
+    "obfuscate": "javascript-obfuscator dist --output dist",
+    "package": "electron-builder",
+    "create-project": "npm run build && npm run package"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.2.2",
+    "@types/http-cache-semantics": "^4.0.4",
+    "@types/ms": "^0.7.34",
     "@types/node": "^20.12.7",
+    "electron": "^30.0.2",
+    "electron-builder": "^24.13.3",
     "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-promise": "^6.1.1",
+    "javascript-obfuscator": "^4.1.0",
+    "tsup": "^8.0.2",
     "tsx": "^4.7.2",
     "typescript": "^5.4.5"
   }
