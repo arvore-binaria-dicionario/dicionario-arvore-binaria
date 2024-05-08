@@ -1,14 +1,18 @@
 {
   "name": "dicionario-arvore-binaria",
   "version": "1.0.0",
+  "homepage": "https://seuwebsite.com",
   "engines": {
     "node": "20.12.2"
   },
   "type": "commonjs",
   "description": "",
-  "main": "src/main.js",
+  "main": "dist/main.js",
   "build": {
     "appId": "com.ifto.dictionary",
+    "directories": {
+      "output": "complet"
+    },
     "win": {
       "target": [
         "nsis"
@@ -17,34 +21,41 @@
     "linux": {
       "target": [
         "deb"
-      ]
+      ],
+      "maintainer": "Seu Nome <seuemail@exemplo.com>"
     }
   },
   "scripts": {
-    "start": "electron ./dist/main.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron . -r esm",
     "dev": "tsx watch src/main.ts --no-cache",
-    "build": "tsup src/main.ts --assets && npm run obfuscate",
-    "obfuscate": "javascript-obfuscator dist --output dist",
-    "package": "electron-builder",
-    "create-project": "npm run build && npm run package"
+    "package": "electron-builder --win",
+    "create-project": "npm run build && npm run package",
+    "build": "webpack --mode production",
+    "postinstall": "electron-builder install-app-deps"
   },
   "keywords": [],
-  "author": "",
+  "author": {
+    "name": "Vinicius",
+    "email": "seuemail@gmail.com"
+  },
   "license": "ISC",
   "devDependencies": {
     "@rocketseat/eslint-config": "^2.2.2",
     "@types/http-cache-semantics": "^4.0.4",
     "@types/ms": "^0.7.34",
     "@types/node": "^20.12.7",
+    "css-loader": "^7.1.1",
     "electron": "^30.0.2",
     "electron-builder": "^24.13.3",
+    "electron-rebuild": "^3.2.9",
+    "electron-reload": "^2.0.0-alpha.1",
     "eslint": "^8.57.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-promise": "^6.1.1",
-    "javascript-obfuscator": "^4.1.0",
     "tsup": "^8.0.2",
     "tsx": "^4.7.2",
-    "typescript": "^5.4.5"
-  }
+    "typescript": "^5.4.5",
+    "electron-prebuilt": "^1.4.13"
+  },
+  "dependencies": {}
 }

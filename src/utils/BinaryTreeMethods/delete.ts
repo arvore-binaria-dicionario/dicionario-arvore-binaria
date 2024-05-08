@@ -26,7 +26,7 @@ export function deleteRecursively(
     node.right = deleteRecursively(node.right, node.root.name)
   }
 
-  node = balanceNode(node, node.root)
+  node = balanceNode(node, comparisonResult)
 
   return node
 }

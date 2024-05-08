@@ -21,7 +21,7 @@ export interface Dictionary {
 }
 
 export class BinaryTree {
-  private dictionary: Dictionary | null
+  private dictionary: Dictionary | null = null
 
   constructor() {
     this.dictionary = null

@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Renderer Process",
+      "type": "msedge",
+      "request": "launch",
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron",
+      "windows": {
+        "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/electron.cmd"
+      },
+      "runtimeArgs": [
+        "${workspaceFolder}/dist",
+        "--remote-debugging-port=9222"
+      ],
+      "webRoot": "${workspaceFolder}"
+    }
+  ]
+}

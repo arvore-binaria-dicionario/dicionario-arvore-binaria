@@ -1,10 +1,12 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "commonjs",
+    "module": "commonjs", // alterado de "ESNext" para "commonjs"
+    "moduleResolution": "node",
     "outDir": "./dist",
     "strict": true,
     "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "types": [
       "node",
       "http-cache-semantics",
@@ -15,7 +17,8 @@
     "src/**/*.ts"
   ],
   "exclude": [
-    "node_modules",
-    "**/*.test.ts"
+    "*.csv",
+    "*.html",
+    "*.css"
   ]
 }
