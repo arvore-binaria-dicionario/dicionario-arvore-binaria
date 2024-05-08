@@ -1,0 +1,153 @@
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  height: 100vh;
+}
+
+#header {
+  background-color: #07f7ff;
+}
+
+#search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 20px;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+#search-input {
+  border-radius: 50px; 
+  padding: 10px 50px 10px 20px; 
+  border: 2px solid #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15), 0 1px 20px rgba(0, 0, 0, 0.15);
+  width: 20%;
+  height: 25px; 
+}
+
+#search-button {
+  position: absolute;
+  right: 39vw; 
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#clear-button {
+  position: absolute;
+  right: 42vw; 
+  top: 50%;
+  transform: translateY(-50%); /* Isso centraliza o botão verticalmente */
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  display: none; /* O botão será inicialmente oculto */
+}
+
+#dictionary-container {
+  display: flex; /* Alterado de grid para flex */
+  flex-wrap: wrap; /* Adicionado para permitir que os itens passem para a próxima linha se necessário */
+  gap: 10px;
+}
+
+.word-item {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 5px;
+}
+
+.word-item:hover {
+  background-color: #f5f5f5;
+}
+
+#popup-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+}
+
+#popup {
+  background-color: white;
+  position: relative;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  animation: zoomIn 0.3s ease;
+}
+
+#close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+
+#popup-word {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+#popup-definition {
+  line-height: 1.5;
+}
+
+@media screen and (max-width: 768px) {
+  #search-input {
+    width: 80%;
+    padding: 10px 20px;
+  }
+
+  #search-button{
+    right: 10%;
+  }
+
+  #clear-button {
+    right: 17%;
+  }
+
+  #dictionary-container {
+    flex-direction: column;
+  }
+
+  .word-item {
+    margin: 10px auto;
+  }
+}

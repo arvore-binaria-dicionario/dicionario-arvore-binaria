@@ -1,0 +1,198 @@
+
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  height: 100vh;
+}
+
+#header {
+  background-color: #07f7ff;
+}
+
+#search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 20px;
+  justify-content: center;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+#search-input {
+  border-radius: 50px; 
+  padding: 10px 50px 10px 20px; 
+  border: 2px solid #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15), 0 1px 20px rgba(0, 0, 0, 0.15);
+  width: 20%;
+  height: 25px; 
+}
+
+#search-button {
+  position: absolute;
+  right: 39vw; 
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: black;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#clear-button {
+  position: absolute;
+  right: 42vw; 
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.clear-button-hidden {
+  display: none;
+}
+
+#dictionary-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.word-item {
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin: 5px;
+  width: auto;
+}
+
+.word-item:hover .definition-item {
+  display: block;
+}
+
+.definition-item {
+  margin-top: 10px;
+}
+
+#popup-container {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 300px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  z-index: 2;
+}
+
+body.overlay {
+  position: relative;
+}
+
+body.overlay::after {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+body.overlay #dictionary-container {
+  pointer-events: none;
+}
+
+.popup.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+#close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+}
+
+.name-item {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.name-item, .definition-item {
+  margin-bottom: 10px;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0); 
+    opacity: 0; 
+  }
+  to {
+    transform: scale(1); 
+    opacity: 1; 
+  }
+}
+
+
+#popup-word {
+  font-size: 24px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+#popup-definition {
+  line-height: 1.5;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 768px) {
+  #search-input {
+    width: 80%;
+    padding: 10px 20px;
+  }
+
+  #search-button{
+    right: 10%;
+  }
+
+  #clear-button {
+    right: 17%;
+  }
+
+  #dictionary-container {
+    flex-direction: column;
+  }
+
+  .word-item {
+    margin: 10px auto;
+  }
+}

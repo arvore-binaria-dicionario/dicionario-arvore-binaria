@@ -1,61 +1,30 @@
-import fs from 'fs'
-import readline from 'readline'
-import { BinaryTree } from './interface-arvore'
-
 interface DictionaryEntry {
   id: number
   name: string
   significance: string
 }
 
-export default async function csvToBinaryTree(
-  csvFilePath: string,
-  dictionary: BinaryTree,
+interface Dictionary {
+  insert(entry: DictionaryEntry): void
+}
+
+async function csvToBinaryTree(
+  csvData: string,
+  dictionary: Dictionary,
 ): Promise<void> {
-  try {
-    const fileStream = fs.createReadStream(csvFilePath, 'utf-8')
-    const rl = createReadlineInterface(fileStream)
-
-    let headers: string[] = []
-    let id = 1
-
-    rl.on('line', (line: string) => {
-      const data = line.split(';')
-      if (!headers.length) {
-        headers = data
-      } else if (data.length === headers.length) {
-        const entry: DictionaryEntry = {
-          id,
-          name: data[0],
-          significance: data[1].replace(/\r/g, ''),
-        }
-        dictionary.insert(entry)
-        id++
+  const lines = csvData.split('\n')
+  const headers = lines[0].split(';')
+  for (let i = 1; i < lines.length; i++) {
+    const data = lines[i].split(';')
+    if (data.length === headers.length) {
+      const entry: DictionaryEntry = {
+        id: i,
+        name: data[0],
+        significance: data[1].replace(/\r/g, ''),
       }
-    })
-
-    return handleReadlineEvents(rl)
-  } catch (err) {
-    console.error('Error reading the file:', err)
-    throw err
+      dictionary.insert(entry)
+    }
   }
 }
 
-function createReadlineInterface(fileStream: fs.ReadStream) {
-  return readline.createInterface({
-    input: fileStream,
-    crlfDelay: Infinity,
-  })
-}
-
-function handleReadlineEvents(rl: readline.Interface): Promise<void> {
-  return new Promise((resolve, reject) => {
-    rl.on('close', () => {
-      resolve()
-    })
-
-    rl.on('error', (err: Error) => {
-      reject(err)
-    })
-  })
-}
+export default csvToBinaryTree
