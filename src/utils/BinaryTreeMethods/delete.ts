@@ -1,32 +1,29 @@
 import { Dictionary } from '../interface-arvore'
-import compareStringByLetterValue from '../compare-string-by-letter-value'
 import { balanceNode } from './balanceNode'
 import { minValueNode } from './minValueNode'
 
-export function deleteRecursively(
-  node: Dictionary | null,
-  key: string,
-): Dictionary | null {
-  if (!node) return node
+export function deleteByName(node: Dictionary | null, name: string): Dictionary | null {
+  if (!node) return null;
 
-  const comparisonResult = compareStringByLetterValue(node.root.name, key)
-
-  if (comparisonResult === 'left') {
-    node.left = deleteRecursively(node.left, key)
-  } else if (comparisonResult === 'right') {
-    node.right = deleteRecursively(node.right, key)
-  } else {
+  if (node.root.name === name) {
+    if (!node.left && !node.right) {
+      return null;
+    }
     if (!node.left) {
-      return node.right
-    } else if (!node.right) {
-      return node.left
+      return node.right;
+    }
+    if (!node.right) {
+      return node.left;
     }
 
-    node.root = minValueNode(node.right)
-    node.right = deleteRecursively(node.right, node.root.name)
+    let minValue = minValueNode(node.right);
+    node.root = minValue;
+    node.right = deleteByName(node.right, minValue.name);
+  } else if (node.root.name > name) {
+    node.left = deleteByName(node.left, name);
+  } else {
+    node.right = deleteByName(node.right, name);
   }
 
-  node = balanceNode(node, node.root)
-
-  return node
+  return balanceNode(node, name < node.root.name ? 'left' : 'right');
 }

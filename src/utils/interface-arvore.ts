@@ -1,5 +1,5 @@
 import { insertRecursively } from './BinaryTreeMethods/insert'
-import { deleteRecursively } from './BinaryTreeMethods/delete'
+import { deleteByName } from './BinaryTreeMethods/delete'
 import {
   searchMatchingWords,
   searchSpecificElementRecursively,
@@ -36,7 +36,7 @@ export class BinaryTree {
   }
 
   public delete(key: string): void {
-    this.dictionary = deleteRecursively(this.dictionary, key)
+    this.dictionary = deleteByName(this.dictionary, key)
   }
 
   public searchSpecificElement(key: string): DictionaryItem | null {
